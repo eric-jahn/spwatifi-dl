@@ -1,0 +1,11 @@
+.env
+.env.*
+*.key
+*.pem
+node_modules/
+__pycache__/
+*.log
+.DS_Store
+spotify-library*.json
+*.m3u8
+*.xspf

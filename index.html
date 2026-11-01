@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spotify Library Export</title>
+<style>
+  :root { --bg:#fafafa; --fg:#1b1b1b; --muted:#666; --card:#fff; --line:#e3e3e3; --accent:#1a7f4b; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#121212; --fg:#eee; --muted:#9a9a9a; --card:#1c1c1c; --line:#2e2e2e; --accent:#4cc38a; } }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.5 system-ui,sans-serif; }
+  main { max-width:900px; margin:0 auto; padding:24px 16px 64px; }
+  h1 { margin:0 0 4px; } .muted { color:var(--muted); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px; margin:16px 0; }
+  input[type=text] { width:100%; box-sizing:border-box; padding:8px; font:inherit; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--fg); }
+  button, a.btn { background:var(--accent); color:#fff; border:0; border-radius:6px; padding:8px 14px; font:inherit; cursor:pointer; text-decoration:none; display:inline-block; }
+  a.btn.alt { background:transparent; color:var(--accent); border:1px solid var(--accent); }
+  code { background:var(--bg); padding:1px 5px; border-radius:4px; }
+  details { border-top:1px solid var(--line); padding:10px 0; }
+  summary { cursor:pointer; display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; }
+  table { width:100%; border-collapse:collapse; margin-top:8px; font-size:14px; }
+  th, td { text-align:left; padding:4px 6px; border-bottom:1px solid var(--line); }
+  .actions { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
+  #status { min-height:1.5em; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Spotify Library Export</h1>
+  <p class="muted">Export your playlists and podcasts to open formats (XSPF, M3U8, CSV). Runs entirely in your browser.</p>
+
+  <section id="login" class="card">
+    <p><strong>Sign in with Spotify.</strong> You'll be sent to Spotify's own login page; this app never sees your password.</p>
+    <ol>
+      <li>Create a free app at <a href="https://developer.spotify.com/dashboard" target="_blank" rel="noopener">developer.spotify.com/dashboard</a>.</li>
+      <li>Add this exact Redirect URI: <code id="redir"></code></li>
+      <li>Paste the app's <em>Client ID</em> (public, not a secret) below.</li>
+    </ol>
+    <input type="text" id="clientId" placeholder="Spotify Client ID" autocomplete="off">
+    <p><button id="loginBtn">Connect Spotify</button></p>
+  </section>
+
+  <div id="status" class="muted"></div>
+  <section id="results" hidden>
+    <div class="card"><div class="actions">
+      <a class="btn alt" id="allJson" download="spotify-library.json">Download everything (JSON)</a>
+      <button id="logout">Disconnect</button></div></div>
+    <h2>Playlists <span class="muted" id="plCount"></span></h2>
+    <div class="card" id="playlists"></div>
+    <h2>Podcasts <span class="muted" id="poCount"></span></h2>
+    <div class="card" id="podcasts"></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
