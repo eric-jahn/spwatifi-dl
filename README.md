@@ -1,4 +1,4 @@
-# Spotify Library Export
+# spwatifi
 
 Export **any** Spotify account's playlists and podcasts to open formats you can import into other apps.
 Runs entirely in your browser from a tiny local web page. No backend, no stored data, no secrets in this repo.

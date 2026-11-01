@@ -1,4 +1,4 @@
-/* Spotify Library Export — fully client-side. No server, no secrets.
+/* spwatifi — fully client-side. No server, no secrets.
  * Auth: Authorization Code + PKCE (the user's password only ever goes to Spotify).
  */
 (() => {
